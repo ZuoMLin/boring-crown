@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>Flat UI Pro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Loading Bootstrap -->
+    <link href="/static/css/vendor/bootstrap.min.css" th:href="@{/css/vendor/bootstrap.min.css}" rel="stylesheet">
+
+    <link href="/static/css/vendor/toastr.min.css" th:href="@{/css/vendor/toastr.min.css}" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="/static/css/flat-ui.min.css" th:href="@{/css/flat-ui.min.css}" rel="stylesheet">
+
+    <link rel="shortcut icon" href="/static/favicon.ico" th:href="@{/favicon.ico}">
+
+    <link href="/static/assets/css/docs.css" th:href="@{/assets/css/docs.css}" rel="stylesheet">
+
+    <link href="/static/assets/css/table.css" th:href="@{/assets/css/table.css}" rel="stylesheet">
+
+
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12">
+            <nav class="navbar navbar-default navbar-expand-xl navbar-static-top" role="navigation">
+                <a class="navbar-brand" href="#">控制面板</a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-01"></button>
+                <div class="collapse navbar-collapse" id="navbar-collapse-01">
+                </div><!-- /.navbar-collapse -->
+            </nav><!-- /navbar -->
+            <ul class="demo-sidebar hidden-md">
+                <li><a href="#para-panel">参数设置</a></li>
+                <li><a href="#jury-panel">评委导入</a></li>
+                <li><a href="#criteria-panel">评分规则导入</a></li>
+                <li><a href="#excel-panel">表格导出</a></li>
+                <li><a href="#monitor-panel">监控</a></li>
+                <li><a href="#abnormal-panel">异常评分</a></li>
+            </ul>
+
+            <div class="container">
+                <div class="demo-row">
+                    <div class="demo-title" id="para-panel">
+                        <h3>参数设置</h3>
+                    </div>
+                    <iframe id="id_iframe" name="nm_iframe" style="display:none;"></iframe>
+
+                    <div class="demo-content">
+                        <p>
+                            主观题评分规则
+                        </p>
+                        <form role="form" action="/admin/params" target="nm_iframe" method="post">
+                            <div class="form-group">
+                                <label class="radio" for="radio-param1">
+                                    <input name="subjectJudgePattern" type="radio" data-toggle="radio" value="0" id="radio-param1" required checked>
+                                    去掉最低分&去掉最高分 取平均
+                                </label>
+                                <label class="radio" for="radio-param2">
+                                    <input name="subjectJudgePattern" type="radio" data-toggle="radio" value="1" id="radio-param2" required>
+                                    总体 取平均
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-sm btn-primary btn-wide">提交</button>
+                        </form>
+                        <br/>
+                        <br/>
+
+                        <p>
+                            客观题异常评分规则
+                        </p>
+                        <form role="form" action="/admin/params" target="nm_iframe" method="post">
+                            <div class="form-group">
+                                <label class="radio" for="radio-param3">
+                                    <input name="abnormalJudgePattern" type="radio" data-toggle="radio" value="0" id="radio-param3" required checked>
+                                    以评委修正评分为准(裁判长不评分)
+                                </label>
+                                <label class="radio" for="radio-param4">
+                                    <input name="abnormalJudgePattern" type="radio" data-toggle="radio" value="1" id="radio-param4" required>
+                                    以裁判长评分为准【暂未开放该功能】
+                                </label>
+                            </div>
+                            <button type="submit" class="btn btn-sm btn-primary btn-wide">提交</button>
+                        </form>
+                        <br/>
+                        <br/>
+                        <p>
+                            作品起止编号设置
+                        </p>
+                        <form class="form-inline" role="form" action="/admin/params" target="nm_iframe" method="post">
+                            <div class="form-group">
+                                <input type="number" name="headProductId" class="form-control" placeholder="起始编号">
+                            </div>
+                            <div class="form-group">
+                                <input type="number" name="tailProductId" class="form-control" placeholder="截止编号">
+                            </div>
+                            <button type="submit" class="btn btn-primary">提交</button>
+                        </form>
+                        <br/>
+                        <br/>
+                        <p>
+                            主观题评分评委数量
+                        </p>
+                        <form class="form-inline" role="form" action="/admin/params" target="nm_iframe" method="post">
+                            <div class="form-group">
+                                <input type="number" name="subjectJudgeCount" class="form-control" placeholder="评委数量">
+                            </div>
+                            <button type="submit" class="btn btn-primary">提交</button>
+                        </form>
+                        <br/>
+                        <br/>
+                        <p>
+                            客观题异常比例
+                        </p>
+                        <form class="form-inline" role="form" action="/admin/params" target="nm_iframe" method="post">
+                            <div class="form-group">
+                                <input type="number" name="abnormalPct" class="form-control" placeholder="0.2" min="0" max="1" step="0.01">
+                            </div>
+                            <button type="submit" class="btn btn-primary">提交</button>
+                        </form>
+                        <br/>
+                        <br/>
+                        <p>
+                            Excel表格设置
+                        </p>
+                        <form class="form-inline" role="form" action="/admin/params" target="nm_iframe" method="post">
+                            <div class="form-group">
+                                <input name="title" class="form-control" placeholder="表格标题">
+                            </div>
+                            <div class="form-group">
+                                <input name="project" class="form-control" placeholder="赛项">
+                            </div>
+                            <div class="form-group">
+                                <input name="area" class="form-control" placeholder="赛区">
+                            </div>
+                            <button type="submit" class="btn btn-primary">提交</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="demo-row">
+                    <div class="demo-title" id="judge-panel">
+                        <h3>评委导入</h3>
+                    </div>
+                    <div class="demo-content">
+                        <p>
+                            评委导入
+                        </p>
+                        <form method="post" action="/admin/jurys" target="nm_iframe" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                              <span class="btn btn-primary btn-embossed btn-file">
+                                <span class="fileinput-new"><span class="fui-upload"></span>评委导入</span>
+                                <input type="file" name="juryFile">
+                              </span>
+                                    <button type="submit" class="btn btn-primary">上传</button>
+
+                                    <!--<input type="submit" value="上传">-->
+                                    <!--<a type="submit" class="btn btn-primary btn-embossed fileinput-exists" data-dismiss="fileinput">上传</a>-->
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="demo-row">
+                    <div class="demo-title" id="criteria-panel">
+                        <h3>评分规则导入</h3>
+                    </div>
+                    <div class="demo-content">
+                        <p>
+                            评分规则导入
+                        </p>
+                        <form method="post" action="/admin/criterias" target="nm_iframe" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <div class="fileinput fileinput-new" data-provides="fileinput">
+                              <span class="btn btn-primary btn-embossed btn-file">
+                                <span class="fileinput-new"><span class="fui-upload"></span>评分规则导入</span>
+                                <input type="file" name="criteriaFile">
+                              </span>
+                                    <button type="submit" class="btn btn-primary">上传</button>
+
+                                    <!--<input type="submit" value="上传">-->
+                                    <!--<a type="submit" class="btn btn-primary btn-embossed fileinput-exists" data-dismiss="fileinput">上传</a>-->
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="demo-row">
+                    <div class="demo-title" id="excel-panel">
+                        <h3>表格导出</h3>
+                    </div>
+                    <div class="demo-content">
+                        <p>
+                            表格导出
+                        </p>
+                        <form action="/admin/reports/jury" target="nm_iframe">
+                            <button type="submit" class="btn btn-sm btn-primary btn-wide">评委评分统计表格</button>
+                        </form>
+                        <br/>
+                        <form action="/admin/reports/product" target="nm_iframe">
+                            <button type="submit" class="btn btn-sm btn-primary btn-wide">作品成绩表格</button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <div class="col-lg-10 offset-lg-1">
+
+                <div id="monitor-panel">
+                    <h5>监控</h5>
+                    <button class="btn btn-sm btn-primary btn-wide" onclick="openMonitor()">开启监控</button>
+                    <button class="btn btn-sm btn-primary btn-wide" onclick="closeMonitor()">关闭监控</button>
+                </div>
+
+                <div class="table-responsive">
+                    <table id="monitor-table" class="table table-bordered table-striped">
+                        <thead id="monitor-table-head">
+                        </thead>
+                        <tbody id="monitor-table-body">
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <div class="col-lg-10 offset-lg-1">
+
+                <div id="abnormal-panel">
+                    <h5>异常评分</h5>
+                    <button class="btn btn-sm btn-primary btn-wide" onclick="detectAbnormalScores()">检测客观题异常项</button>
+                </div>
+                <br/>
+
+                <div class="table-responsive">
+                    <table id="abnormal-table" class="table table-bordered">
+                        <thead id="abnormal-table-head">
+                        <tr>
+                            <th>异常作品号</th>
+                            <th colspan="3">内容</th>
+                            <th>配分</th>
+                            <th>评分标准</th>
+                            <th>评委1</th>
+                            <th>分数</th>
+                            <th>评委2</th>
+                            <th>分数</th>
+                            <th>裁判长评分</th>
+                        </tr>
+                        </thead>
+                        <tbody id="abnormal-table-body">
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-lg-1 offset-lg-11">
+                    <p>
+                        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="submitAbnormalScores()">提交</button>
+                    </p>
+                </div>
+
+
+            </div>
+
+
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/><br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/>
+            <br/><br/><br/><br/>
+            <br/><br/>
+            <br/><br/>
+
+            <div id="msg"></div>
+
+
+        </div><!-- /.col-md-12 -->
+    </div><!-- /.row -->
+</div>
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/static/sripts/jquery.min.js" th:src="@{/scripts/jquery.min.js}"></script>
+
+<script src="/static/sripts/sockjs.min.js" th:src="@{/scripts/sockjs.min.js}"></script>
+
+<script src="/static/sripts/stomp.js" th:src="@{/scripts/stomp.js}"></script>
+
+
+<script src="/static/sripts/jquery.min.js" th:src="@{/scripts/jquery.min.js}"></script>
+
+
+<script src="/static/scripts/bootstrap.min.js" th:src="@{/scripts/bootstrap.min.js}"></script>
+
+<!-- Bootstrap 4 requires Popper.js -->
+<script src="/static/scripts/popper.min.js" th:src="@{/scripts/popper.min.js}"></script>
+
+<script src="/static/scripts/flat-ui.js" th:src="@{/scripts/flat-ui.js}"></script>
+
+<script src="/static/assets/js/application.js" th:src="@{/assets/js/application.js}"></script>
+
+<script src="/static/scripts/admin.js" th:src="@{/scripts/admin.js}"></script>
+
+<script src="/static/scripts/toastr.min.js" th:src="@{/scripts/toastr.min.js}"></script>
+</body>
+</html>

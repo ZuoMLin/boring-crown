@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>Flat UI Pro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Loading Bootstrap -->
+    <link href="/static/css/vendor/bootstrap.min.css" th:href="@{/css/vendor/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="/static/css/flat-ui.min.css" th:href="@{/css/flat-ui.min.css}" rel="stylesheet">
+
+    <link rel="shortcut icon" href="/static/favicon.ico" th:href="@{/favicon.ico}">
+
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h4>请登录评分系统</h4>
+            <form class="form-horizontal" role="form" method="post" action="/login">
+                <div class="form-group">
+                    <label for="username" class="col-lg-2 control-label">用户名</label>
+                    <div class="col-lg-10">
+                        <input type="text" class="form-control" id="username" name="username" placeholder="姓名">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="password" class="col-lg-2 control-label">密码</label>
+                    <div class="col-lg-10">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="身份证后6位">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-lg-offset-2 col-lg-10">
+                        <button type="submit" class="btn btn-primary">登录</button>
+                    </div>
+                </div>
+            </form>
+        </div><!-- /.col-md-12 -->
+    </div><!-- /.row -->
+</div>
+
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/static/scripts/jquery.min.js" th:src="@{/scripts/jquery.min.js}"></script>
+
+<script src="/static/scripts/bootstrap.min.js" th:src="@{/scripts/bootstrap.min.js}"></script>
+
+<script src="/static/scripts/popper.min.js" th:src="@{/scripts/popper.min.js}"></script>
+
+
+<!-- Bootstrap 4 requires Popper.js -->
+<script src="https://unpkg.com/popper.js@1.14.1/dist/umd/popper.min.js" crossorigin="anonymous"></script>
+
+<script src="/static/scripts/flat-ui.js"  th:src="@{/scripts/flat-ui.js}"></script>
+
+<script src="/static/assets/js/application.js" th:src="@{/assets/js/application.js}"></script>
+</body>
+</html>

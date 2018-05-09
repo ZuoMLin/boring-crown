@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8">
+    <title>Flat UI Pro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Loading Bootstrap -->
+    <link href="/static/css/vendor/bootstrap.min.css" th:href="@{/css/vendor/bootstrap.min.css}" rel="stylesheet">
+
+    <link href="/static/css/vendor/toastr.min.css" th:href="@{/css/vendor/toastr.min.css}" rel="stylesheet">
+
+    <!-- Loading Flat UI -->
+    <link href="/static/css/flat-ui.min.css" th:href="@{/css/flat-ui.min.css}" rel="stylesheet">
+
+    <link rel="shortcut icon" href="/static/favicon.ico" th:href="@{/favicon.ico}">
+
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-12">
+            <nav class="navbar navbar-default navbar-expand-lg" role="navigation">
+                <a class="navbar-brand" th:text="${username}"></a>
+                <p hidden id="jury-id" th:text="${userId}"/>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-01"></button>
+                <div class="collapse navbar-collapse" id="navbar-collapse-01">
+                    <select data-toggle="select" class="form-control select select-inverse select-sm mrs" id="judged-products-select" onchange="judgedProductSelected()">
+                        <option value="0">已评作品</option>
+                    </select>
+                    <select data-toggle="select" class="form-control select select-primary select-sm mrs" id="unJudged-products-select" onchange="unJudgedProductSelected()">
+                        <option value="0">未评作品</option>
+                    </select>
+
+                    <button class="btn navbar-btn btn-warning mrs m-auto" type="button" onclick="finishJudge()">结束评分</button>
+                    <button class="btn navbar-btn btn-danger mrs" type="button" onclick="window.location='/logout'">退出</button>
+                </div><!-- /.navbar-collapse -->
+            </nav><!-- /navbar -->
+
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="alert alert-success" role="alert" id="judge-alert" hidden>评分成功~</div>
+                    <div class="alert alert-danger" role="alert" id="judge-error-alert" hidden>评分结束</div>
+                    <div class="alert alert-success" role="alert" id="judge-finish-alert" hidden>评分结束</div>
+                    <h4 id="product-desc">请选择作品开始评分</h4>
+                    <p hidden id="product-id"></p>
+                    <p hidden id="criteria-ids">1</p>
+                    <div class="table-responsive">
+                        <table class="table table-bordered" id="criteria-score-table">
+                            <thead>
+                                <tr>
+                                    <!--<th class="text-center" width="20px"><label class="checkbox no-label toggle-all" for="checkbox-table-1"><input type="checkbox" value="" id="checkbox-table-1" data-toggle="checkbox"></label></th>-->
+                                    <th>内容</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th>类型</th>
+                                    <th>题目总分</th>
+                                    <th>配分</th>
+                                    <th>评判标准</th>
+                                    <th>分数</th>
+                                </tr>
+                            </thead>
+                            <tbody id="criteria-score-table-body">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div><!-- /.row -->
+            <div class="row">
+                <div class="col-lg-1 offset-lg-11">
+                    <p>
+                        <button type="button" class="btn btn-primary btn-lg btn-block" onclick="submitScores()">提交</button>
+                    </p>
+                </div>
+            </div>
+
+        </div><!-- /.col-md-12 -->
+    </div><!-- /.row -->
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="/static/scripts/jquery.min.js" th:src="@{/scripts/jquery.min.js}"></script>
+
+<script src="/static/scripts/bootstrap.min.js" th:src="@{/scripts/bootstrap.min.js}"></script>
+
+<!-- Bootstrap 4 requires Popper.js -->
+<script src="/static/scripts/popper.min.js" th:src="@{/scripts/popper.min.js}"></script>
+
+<script src="/static/scripts/flat-ui.js" th:src="@{/scripts/flat-ui.js}"></script>
+
+<script src="/static/assets/js/application.js" th:src="@{/assets/js/application.js}"></script>
+
+<script src="/static/scripts/jury.js" th:src="@{/scripts/jury.js}"></script>
+
+<script src="/static/scripts/toastr.min.js" th:src="@{/scripts/toastr.min.js}"></script>
+
+</body>
+</html>

@@ -39,9 +39,6 @@ public class ShiroConfiguration {
         filterChainDefinitionMap.put("/**/*.ttf", "anon");
         filterChainDefinitionMap.put("/**/*.woff", "anon");
         filterChainDefinitionMap.put("/**/*.map", "anon");
-
-
-
 //        filterChainDefinitionMap.put("/login", "authc[POST]");
         filterChainDefinitionMap.put("/logout", "logout");
         filterChainDefinitionMap.put("/admin/**", "authc,roles[admin]");
@@ -64,7 +61,7 @@ public class ShiroConfiguration {
         DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
         sessionManager.setSessionIdCookie(simpleCookie());
         sessionManager.setSessionIdCookieEnabled(true);
-        sessionManager.setGlobalSessionTimeout(180000000);
+        sessionManager.setGlobalSessionTimeout(-1);
         securityManager.setSessionManager(sessionManager);
 
         securityManager.setRealms(Lists.newArrayList(usernamePasswordRealm()));

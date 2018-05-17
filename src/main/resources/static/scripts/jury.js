@@ -103,6 +103,8 @@ function judgedProductSelected() {
         }
     };
     req.send();
+    var select = document.getElementById("judged-products-select");
+    select.selectedIndex = -1;
 }
 
 /**
@@ -118,6 +120,7 @@ function unJudgedProductSelected() {
         var scoreInputId = "score-input-" + criteriaIds[i];
         document.getElementById(scoreInputId).value = 0;
     }
+    select.selectedIndex = -1;
 }
 
 function initCriteriasTable() {

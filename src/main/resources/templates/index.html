@@ -26,10 +26,10 @@
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-01"></button>
                 <div class="collapse navbar-collapse" id="navbar-collapse-01">
                     <select data-toggle="select" class="form-control select select-inverse select-sm mrs" id="judged-products-select" onchange="judgedProductSelected()">
-                        <option value="0">已评作品</option>
+                        <option value="-1">已评作品</option>
                     </select>
                     <select data-toggle="select" class="form-control select select-primary select-sm mrs" id="unJudged-products-select" onchange="unJudgedProductSelected()">
-                        <option value="0">未评作品</option>
+                        <option value="-1">未评作品</option>
                     </select>
 
                     <button class="btn navbar-btn btn-warning mrs m-auto" type="button" onclick="finishJudge()">结束评分</button>
